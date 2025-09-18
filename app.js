@@ -1387,7 +1387,7 @@ edUploadBtn.onclick = async () => {
     }
 
     await send(buildCmd('C2','',8));
-    let c2 = await waitForAck('BBC2', 8000);
+    let c2 = await waitForAck('BBC2', 240000);
     if (!c2) throw new Error('Timeout waiting for BBC2');
     const c2Failed = parseInt(c2.slice(4,6),16);
     if (c2Failed !== 0) throw new Error('Device reported failure on end');
