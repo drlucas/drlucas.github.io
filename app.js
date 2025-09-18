@@ -605,7 +605,7 @@ advEdit?.addEventListener('change', () => {
   const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
   // Simple ACK wait helper that reuses the existing waiter system
-  function waitForAck(prefix, timeoutMs = 8000) {
+  function waitForAck(prefix, timeoutMs = 240000) {
     return waitFor(prefix, timeoutMs).catch(() => null);
   }
 
@@ -724,8 +724,8 @@ advEdit?.addEventListener('change', () => {
 
       // === C3 (rename/commit) ===
       await send(buildCmd('C3', '5C55' + nameHex, PAD_DEFAULT));
-      const c3 = await waitForAck('BBC3', 8000);
-      if (!c3) throw new Error('Timeout waiting for BBC3');
+      const c3 = await waitForAck('BBC3', 240000);
+      if (!c3) throw new Error('Timeout waiting for BBC3-240000');
       const c3Failed = parseInt(c3.slice(4,6), 16);
       if (c3Failed !== 0) throw new Error('Device failed final rename');
 
