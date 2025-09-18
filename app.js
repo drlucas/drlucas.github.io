@@ -166,7 +166,7 @@ advEdit?.addEventListener('change', () => {
 
   // --- Waiters (optional) ---
   const waiters = [];
-  function waitFor(prefix, timeoutMs=4000) {
+  function waitFor(prefix, timeoutMs=240000) {
     return new Promise((resolve, reject) => {
       const w = { prefix, resolve, reject, t:setTimeout(()=>{ reject(new Error(`Timeout waiting for ${prefix}`)); }, timeoutMs) };
       waiters.push(w);
@@ -670,7 +670,7 @@ advEdit?.addEventListener('change', () => {
       await send(buildCmd('C0', intToHex(size,4) + intToHex(maxPack,2) + '5C55' + nameHex, PAD_DEFAULT));
 
       // Wait for BBC0 before sending chunks
-      let c0 = await waitForAck('BBC0', 5000);
+      let c0 = await waitForAck('BBC0', 240000);
       if (!c0) throw new Error('Timeout waiting for BBC0');
       const c0Failed  = parseInt(c0.slice(4,6),16);
       const c0Written = parseInt(c0.slice(6,14),16) || 0;
@@ -1366,7 +1366,7 @@ edUploadBtn.onclick = async () => {
     const nameHex = utf16leHex(targetName);
 
     await send(buildCmd('C0', intToHex(size,4) + intToHex(maxPack,2) + '5C55' + nameHex));
-    let c0 = await waitForAck('BBC0', 5000);
+    let c0 = await waitForAck('BBC0', 240000);
     if (!c0) throw new Error('Timeout waiting for BBC0');
     const c0Failed  = parseInt(c0.slice(4,6),16);
     const c0Written = parseInt(c0.slice(6,14),16) || 0;
