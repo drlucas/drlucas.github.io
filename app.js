@@ -605,7 +605,7 @@ advEdit?.addEventListener('change', () => {
   const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
   // Simple ACK wait helper that reuses the existing waiter system
-  function waitForAck(prefix, timeoutMs = 3000) {
+  function waitForAck(prefix, timeoutMs = 8000) {
     return waitFor(prefix, timeoutMs).catch(() => null);
   }
 
