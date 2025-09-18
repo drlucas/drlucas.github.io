@@ -1393,7 +1393,7 @@ edUploadBtn.onclick = async () => {
     if (c2Failed !== 0) throw new Error('Device reported failure on end');
 
     await send(buildCmd('C3', '5C55' + nameHex));
-    const c3 = await waitForAck('BBC3', 3000);
+    const c3 = await waitForAck('BBC3', 8000);
     if (!c3) throw new Error('Timeout waiting for BBC3');
     const c3Failed = parseInt(c3.slice(4,6),16);
     if (c3Failed !== 0) throw new Error('Device failed final rename');
