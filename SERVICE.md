@@ -1,5 +1,7 @@
 How do make this bad boy run in the background and then just run a command to play a file all the time... 
 
+files.zip is what Claude.ai made for it - need to test it - but this will be pretty awesome if I can get it to work - will next try to see if I can get two skellys to connect from one pi and if so then the skellys could tell each other jokes. if not then would need two Pis to run - but doable :) 
+
 my one skelly is  C3:93:D4:E0:63:18 for it's Mac address :) 
 
 Yes, the fix is to stop reconnecting for every play. A small background service keeps one Bluetooth connection open and reconnects on its own if it drops. FPP then sends it short “play 1” requests, and each one returns immediately.
